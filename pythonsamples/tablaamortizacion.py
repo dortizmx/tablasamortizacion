@@ -106,18 +106,28 @@ def creaTablaAmortizacion() :
     tablaamortizacion(meses,montoprestamo,anticipo,tasaint)
     opt = raw_input("Presiona enter para salir...")
 
+def creaTablaPagosAdelantados():
+    print "************************Tabla de Amortizacion*******************************"
+    print "opcion en construccion"
+    opt = raw_input("Presiona enter para salir...")
+
+
 def menu():
     option = 0
     while (option <> "99") :
         clear()
         print "***************************************************************************"
         print " 1) Tabla Amortizacion"
+        print " 2) Tabla Amortizacion con pagos adelantados"
         print "99) Salir"
         print "***************************************************************************"
         option = raw_input("numero de opcion :")
         if(option == "1") :
             clear()
             creaTablaAmortizacion()
+        if (option == "2") :
+            clear()
+            creaTablaPagosAdelantados()
     
 
 def main(args):
