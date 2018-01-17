@@ -97,7 +97,38 @@ def tablaamortizacion(meses,valorinicial,anticipo,tasainteres):
         print "-----------------------------------------------------"
         vinicial = vinicial - abonocapital
 
+def tablaamotizacionpagosanticipados(meses, valorinicial,anticipos,tasainteres):
+    prm_meses = int(meses)
+    vinicial = valorinicial
+    bandera = 1
+    while (prm_meses > 0) :
+        anualidad = getAnualidad(prm_meses,vinicial,tasainteres)
+        glbinteres = getinteresmensual(tasainteres)
+        montointeres = getMontoInteres(vinicial, glbinteres)
+        prm_abonoext = anticipos[prm_meses]
+        abonocapital = getMontoAbonoCapital(anualidad, montointeres)
+        print "-----------------------------------------------------"
+        print "No Pago        :       %i" %prm_meses
+        prm_meses = prm_meses - 1
+        print "Interes mensual:    %% %f" %glbinteres
+        print "Monto Inicial  :      %s" %SetMoneda(vinicial,'$', 2)
+        print "Pago Anualidad :      %s " %SetMoneda(anualidad, '$', 2)
+        print "Pago Interes   :      %s " %SetMoneda(montointeres , '$', 2)
+        print "Pago Capital   :      %s " %SetMoneda(abonocapital, '$', 2)
+        print "Pago Extraord  :      %s " %SetMoneda(prm_abonoext, '$', 2)
+        print "-----------------------------------------------------"
+        vinicial = vinicial - (abonocapital + prm_abonoext)
+
 def creaTablaAmortizacion() :
+    print "************************Tabla de amortizacion******************************"
+    meses = float(raw_input("No Meses:"))
+    montoprestamo = float(raw_input("Monto del Prestamo :"))
+    anticipo = float(raw_input("Anticipo :"))
+    tasaint = float(raw_input("Tasa interes :"))
+    tablaamortizacion(meses,montoprestamo,anticipo,tasaint)
+    opt = raw_input("Presiona enter para salir...")
+
+def creaTablaAmortizacionAnticipos():
     print "************************Tabla de amortizacion******************************"
     meses = float(raw_input("No Meses:"))
     montoprestamo = float(raw_input("Monto del Prestamo :"))
