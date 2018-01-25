@@ -111,7 +111,7 @@ def tablaamortizacion(meses,valorinicial,anticipo,tasainteres):
     #print retvalue
     return retvalue
 
-def guardatabla(table):
+def guardatabla(table,meses,montoprestamo,anticipo,tasaint):
     client = MongoClient("mongodb://localhost");
     db = client.cotizaciones
     nombre =   raw_input("Nombre           :")
@@ -122,11 +122,16 @@ def guardatabla(table):
             "Nombre" : nombre,
             "APaterno" :  apaterno,
             "AMaterno" : amaterno,
+            "NoMeses" : meses,
+            "MontoInicial" : montoprestamo,
+            "Anticipo" : anticipo,
+            "TasaInteres" : tasaint,
             "Mensualidades" : table
         }
     )
 
-    print result.inserted_id
+    print "tabla guardada con el codigo : %s", result.inserted_id
+    raw_input("Presione Enter para continuar...")
 
     
 
@@ -164,7 +169,7 @@ def creaTablaAmortizacion() :
     #guardatabla(rettable)
     opt = raw_input("¿Desea guardar la tabla? (s)/(n) :")
     if opt == 's' :
-        guardatabla(rettable)
+        guardatabla(rettable,meses,montoprestamo,anticipo,tasaint)
 
 def creaTablaAmortizacionAnticipos():
     print "************************Tabla de amortizacion******************************"
