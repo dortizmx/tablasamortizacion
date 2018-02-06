@@ -5,6 +5,7 @@ import csv
 import os.path
 from datetime import *
 import locale
+import time
 
 def readCSVFile(filename) :
     itemlist = [{}]
@@ -49,10 +50,17 @@ def main(argv) :
             print "-o File output"
             return 0
         filename = sys.argv[1]
-        progress(1,10)
-        progress(2,10)
-        progress(5,10,'Reading')
+        total = 100
+        i = 0
+        while i < total:
+            message = "Starting work"
+            if(i >= 30) :
+                message = "Work in progress"
+            progress(i, total, status=message)
+            time.sleep(0.5)  # emulating long-playing job
+            i += 1
         #readCSVFile(filename)
+        print ("")
         
 if __name__ == "__main__" :
     main(sys.argv)
