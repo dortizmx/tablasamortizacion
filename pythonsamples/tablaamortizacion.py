@@ -203,6 +203,10 @@ def menu():
         if (option == "2") :
             clear()
             creaTablaPagosAdelantados()
+    clear()
+    print "*****************************************************************"
+    print "                          Salida "
+    print "*****************************************************************"
   
 
 def main(args):
