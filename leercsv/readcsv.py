@@ -39,6 +39,19 @@ def progress(count, total, status=''):
     sys.stdout.write('[%s] %s%s ...%s\r' % (bar, percents, '%', status))
     sys.stdout.flush() 
 
+
+
+def sumar(a, b):
+    return a + b
+ 
+def restar(a, b):
+    return a - b
+ 
+def multiplicar(a, b):
+    return a * b;
+ 
+
+
 def main(argv) :
     #print "Lectura de archivo CSV"
     if len(sys.argv) == 1 or len(sys.argv) < 2 :
@@ -61,6 +74,20 @@ def main(argv) :
             i += 1
         #readCSVFile(filename)
         print ("")
+
+        num1 = raw_input("Num1: ")
+        num2 = raw_input("Num2: ")
+ 
+        print("Opciones\n1.- Sumar\n2.- Restar\n3.- Multiplicar")
+ 
+        operaciones = { '1': sumar, '2': restar, '3': multiplicar}
+ 
+        seleccion = raw_input('Escoge una: ')
+        try:
+            resultado = operaciones[seleccion](int(num1), int(num2))
+            print resultado
+        except:
+            print("Esa no vale")
         
 if __name__ == "__main__" :
     main(sys.argv)
