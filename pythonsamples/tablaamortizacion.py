@@ -5,6 +5,7 @@ import sys
 import os
 from datetime import *
 from pymongo import MongoClient
+import time
 
 def SetMoneda(num, simbolo="$", n_decimales=2):
     """Convierte el numero en un string en formato moneda
@@ -187,8 +188,9 @@ def creaTablaPagosAdelantados():
 
 
 def menu():
+    operaciones = { '1': creaTablaAmortizacion, '2': creaTablaPagosAdelantados }
     option = 0
-    while (option <> "99") :
+    while (True) :
         clear()
         #print os.name
         print "***************************************************************************"
@@ -197,12 +199,23 @@ def menu():
         print "99) Salir"
         print "***************************************************************************"
         option = raw_input("numero de opcion :")
-        if(option == "1") :
-            clear()
-            creaTablaAmortizacion()
-        if (option == "2") :
-            clear()
-            creaTablaPagosAdelantados()
+        
+        try:
+            if option == "99" :
+                break
+                
+            operaciones[option]()
+            #print resultado
+        except:
+            print("Opción invalida")
+            time.sleep(2)
+
+        #if(option == "1") :
+        #    clear()
+        #    creaTablaAmortizacion()
+        #if (option == "2") :
+        #    clear()
+        #    creaTablaPagosAdelantados()
     clear()
     print "*****************************************************************"
     print "                          Salida "
